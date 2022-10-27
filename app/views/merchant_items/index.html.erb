@@ -1,0 +1,10 @@
+<h1>Merchant <%= @items[0].merchant_id %>'s Items</h1>
+
+<% @items.each do |item| %>
+  <p>
+    Item Name: <%= item.name %><br>
+    Item Description: <%= item.description %><br>
+    Item Price: <%= item.unit_price %><br>
+    Item Merchant ID: <%= item.merchant_id %><br>
+  </p>
+<% end %>
