@@ -61,4 +61,14 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  
+
+
 end
+  VCR.configure do |c|
+    c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
+    c.hook_into :webmock
+    c.filter_sensitive_data('<API_KEY>') { ENV.fetch('tmdb_api_key', nil) }
+  c.configure_rspec_metadata!
+  c.default_cassette_options = {:match_requests_on => [:method, VCR.request_matchers.uri_without_param(:api_key)], re_record_interval: 1.days}
+  end
